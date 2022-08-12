@@ -1,0 +1,95 @@
+CREATE DATABASE frameroom;
+
+
+CREATE USER 'usuario'@'%' IDENTIFIED BY '123';
+
+GRANT ALL ON *.* TO 'usuario'@'%' WITH GRANT OPTION;
+
+
+flush privileges;
+
+
+USE frameroom;
+
+/***** TABELA CARGOS *****/
+CREATE TABLE cargos (
+  cod_cargo int primary key,
+  cargo varchar(20) NOT NULL
+);
+/*****************/
+
+INSERT INTO cargos (cod_cargo, cargo)
+VALUES (0, 'Técnico') , (1, 'Docente CCET'), (2, 'Discente CCET'), (3, 'Docente'), (4, 'Dicente'), (5, 'Outros'), (9, 'Administrador');
+
+/***** TABELA USUARIOS *****/
+CREATE TABLE usuarios (
+  cpf varchar (14) primary key,
+  nome varchar(60) NOT NULL,
+  telefone varchar(14) NOT NULL,
+  email varchar(60) NOT NULL,
+  senha char(32) NOT NULL,
+  cod_cargo int NOT NULL,
+  
+  FOREIGN KEY (cod_cargo) REFERENCES cargos(cod_cargo)
+);
+/*****************/
+
+INSERT INTO usuarios (cpf, nome, telefone, email, senha, cod_cargo)
+VALUES ("111-111-111-11", "Administrador", "(00)00000-0000", "admin", "21232f297a57a5a743894a0e4a801fc3", 9);
+
+/***** TABELA ESPAÇOS *****/
+CREATE TABLE espacos (
+  cod_espaco varchar (6) primary key,
+  tipo_espaco varchar (30) NOT NULL,
+  numero int NOT NULL,
+  nome varchar(30) NOT NULL,
+  capacidade int NOT NULL,
+  andar int NOT NULL,
+  descricao TEXT NOT NULL
+  
+);
+/*****************/
+
+
+/***** TABELA RESERVAS *****/
+CREATE TABLE reservas (
+  cod_reserva int AUTO_INCREMENT primary key ,
+  data DATE NOT NULL,
+  hora_inicio varchar(5) NOT NULL,
+  hora_fim varchar(5) NOT NULL,
+  cpf_usuario varchar (14) NOT NULL,
+  cod_espaco varchar (5) NOT NULL,
+  mensagem TEXT NOT NULL,	
+
+  FOREIGN KEY (cpf_usuario) REFERENCES usuarios(cpf),
+  FOREIGN KEY (cod_espaco) REFERENCES espacos(cod_espaco) ON UPDATE CASCADE
+	
+);
+/*****************/
+
+/***** TABELA HORARIOS *****/
+CREATE TABLE horarios (
+  cod_espaco varchar (5) NOT NULL,
+  dia varchar(10),
+  intervalo_1 varchar(50),
+  intervalo_2 varchar(50),
+  intervalo_3 varchar(50),
+  intervalo_4 varchar(50),
+  intervalo_5 varchar(50),
+  intervalo_6 varchar(50),
+  intervalo_7 varchar(50),
+  intervalo_8 varchar(50),
+  intervalo_9 varchar(50),
+  intervalo_10 varchar(50),
+  intervalo_11 varchar(50),
+  intervalo_12 varchar(50),
+  intervalo_13 varchar(50),
+  intervalo_14 varchar(50),
+  intervalo_15 varchar(50),
+  intervalo_16 varchar(50),
+
+  PRIMARY KEY(cod_espaco, dia),
+  FOREIGN KEY (cod_espaco) REFERENCES espacos(cod_espaco) ON UPDATE CASCADE
+	
+);
+/*****************/
