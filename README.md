@@ -2,7 +2,7 @@
 
 ## 📝 Sobre
 
-**Frameroom** é uma aplicação de gestão de espaço feita para o prédio CCET da Universidade Estadual de Montes Claros (Unimontes)
+**Frameroom** é uma aplicação de gestão de espaço feita para o prédio CCET da Universidade Estadual de Montes Claros (Unimontes), foi criada durante a disciplina de Engenharia de Software l.
 
 O software permite registro e login, cadastro/exclusão/edição de usuarios, espaços, reservas, solicitações de reserva, horarios. Além de um sistema de envio de e-mail.
 
@@ -36,11 +36,11 @@ O software permite registro e login, cadastro/exclusão/edição de usuarios, es
 
 ```bash
 # Abra um terminal e copie este repositório com o comando
-$ git clone https://github.com/RodrigoFonsecaG/moveit.git
+$ git clone https://github.com/RodrigoFonsecaG/frameroom.git
 # ou use a opção de download.
 
 # Entre na pasta do projeto 
-$ cd moveit
+$ cd frameroom
 
 
 -----------
